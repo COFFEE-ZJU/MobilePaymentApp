@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MobilePaymentApp</string>
+    <string name="title_transaction_detail">Transaction Detail</string>
+
+    <string name="detail">详细信息</string>
+    <string name="flight">航班</string>
+    <string name="flight_number">航班号</string>
+    <string name="flight_company">航空公司</string>
+    <string name="flight_origin_city">起始地</string>
+    <string name="flight_origin_airport">起始机场</string>
+    <string name="flight_dest_city">目的地</string>
+    <string name="flight_dest_airport">目的机场</string>
+    <string name="flight_takeoff_time">起飞时间</string>
+    <string name="flight_arrival_time">降落时间</string>
+    
+    <string name="hotel">酒店</string>
+    <string name="hotel_name">酒店名称</string>
+    <string name="hotel_address">酒店地址</string>
+    <string name="hotel_phone">酒店电话</string>
+    <string name="hotel_room_type">房间类型</string>
+    <string name="hotel_checkin_date">入住日期</string>
+    <string name="hotel_checkout_date">离开日期</string>
+    
+</resources>
