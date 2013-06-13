@@ -77,7 +77,6 @@ public class TransactionListFragment extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		// TODO: replace with a real list adapter.
 		SimpleAdapter adapter = new SimpleAdapter(getActivity(),getData(),R.layout.transaction_list_item,
 				new String[]{"title","price","time","state"},
 				new int[]{R.id.title,R.id.price,R.id.time,R.id.state});
@@ -91,7 +90,7 @@ public class TransactionListFragment extends ListFragment {
 		for(int i=0; i<DummyContent.ITEMS.size(); i++){
 			map = new HashMap<String, Object>();
 			map.put("title", DummyContent.ITEMS.get(i).title);
-			map.put("price", DummyContent.ITEMS.get(i).price);
+			map.put("price", DummyContent.ITEMS.get(i).price + getResources().getString(R.string.money_unit));
 			map.put("time", DummyContent.ITEMS.get(i).time);
 			map.put("state", DummyContent.ITEMS.get(i).state);
 			list.add(map);

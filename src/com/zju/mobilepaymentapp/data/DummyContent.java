@@ -28,23 +28,26 @@ public class DummyContent {
 
 	static {
 		// Add 3 sample items.
-		TransDetailItem[] tdi = new TransDetailItem[3];
-		tdi[0] = new TransDetailItem("1", "TID1001", TRANS_TYPE.HOTEL, STATE_TYPE.UNPAID, "2013-06-13", "Hilton", "гд10000", "yibo", "13888888888", "399111199201018888", 
+		TransDetailItem[] tdi = new TransDetailItem[4];
+		tdi[0] = new TransDetailItem("1", "TID1001", TRANS_TYPE.HOTEL, STATE_TYPE.UNPAID, "2013-06-13", "Hilton", "10000", "yibo", "13888888888", "399111199201018888", 
 				null, null, null, 
 				"Hilton Chicago", "XXX Ave., Chicago, USA", "+1-12345678", "Single Room", "2013-08-11", "2013-08-14", 
-				null, null, null, null, null, null, null, null);
-		tdi[1] = new TransDetailItem("2", "TID1002", TRANS_TYPE.HOTEL, STATE_TYPE.PAID, "2013-06-11", "xx hotel", "гд600", "yibo", "13888888888", "399111199201018888", 
+				null, null, null, null, null, null, null, null, false);
+		tdi[1] = new TransDetailItem("2", "TID1002", TRANS_TYPE.HOTEL, STATE_TYPE.PAID, "2013-06-11", "xx hotel", "600", "yibo", "13888888888", "399111199201018888", 
 				"2013-06-12 12:01", null, null, 
 				"xx hotel Shanghai", "XXX Ave., Shanghai, PRC", "+86-12345678", "Single Room", "2013-08-11", "2013-08-14", 
-				null, null, null, null, null, null, null, null);
-		tdi[2] = new TransDetailItem("3", "TID1002", TRANS_TYPE.FLIGHT, STATE_TYPE.CONFIRMED, "2013-06-10", "xx air", "гд6000", "yibo", "13888888888", "399111199201018888", 
+				null, null, null, null, null, null, null, null, false);
+		tdi[2] = new TransDetailItem("3", "TID1003", TRANS_TYPE.FLIGHT, STATE_TYPE.CONFIRMED, "2013-06-10", "xx air", "6000", "yibo", "13888888888", "399111199201018888", 
 				"2013-06-12 12:01", "2013-06-12 12:21", "2013-06-12 12:31",
 				null, null, null, null, null, null, 
-				"CA1234", "xx air", "Shanghai", "Pudong Airport", "Chicago", "xxx Airport", "2013-08-10 17:00", "2013-08-11 10:00");
+				"CA1234", "xx air", "Shanghai", "Pudong Airport", "Chicago", "xxx Airport", "2013-08-10 17:00", "2013-08-11 10:00", false);
+		tdi[3] = new TransDetailItem("4", "TID1004", TRANS_TYPE.FLIGHT, STATE_TYPE.SHIPPED, "2013-06-10", "xx air", "6000", "yibo", "13888888888", "399111199201018888", 
+				"2013-06-12 12:01", "2013-06-12 12:21", "2013-06-12 12:31",
+				null, null, null, null, null, null, 
+				"CA1234", "xx air", "Shanghai", "Pudong Airport", "Chicago", "xxx Airport", "2013-08-10 17:00", "2013-08-11 10:00", false);
 		
-		addItem(new DummyItem(tdi[0].id, tdi[0].getTitle(), tdi[0].price, tdi[0].orderTime, "state: "+tdi[0].state, tdi[0]));
-		addItem(new DummyItem(tdi[1].id, tdi[1].getTitle(), tdi[1].price, tdi[1].orderTime, "state: "+tdi[1].state, tdi[1]));
-		addItem(new DummyItem(tdi[2].id, tdi[2].getTitle(), tdi[2].price, tdi[2].orderTime, "state: "+tdi[2].state, tdi[2]));
+		for(int i = 0;i<tdi.length;i++)
+			addItem(new DummyItem(tdi[i].id, tdi[i].getTitle(), tdi[i].price, tdi[i].orderTime, "state: "+tdi[i].state, tdi[i]));
 		//addItem(new DummyItem("3", "Hotel in Shanghai","гд500","6-01","state: confirmed","date ,status, etc."));
 	}
 
@@ -112,6 +115,8 @@ public class DummyContent {
 		public String takeoffTime;
 		public String arrivalTime;
 		
+		public boolean isCommented;
+		
 		public TransDetailItem(	String id,
 								String transID,
 								TRANS_TYPE type,
@@ -141,7 +146,8 @@ public class DummyContent {
 								String destCity,
 								String destAirport,
 								String takeoffTime,
-								String arrivalTime
+								String arrivalTime,
+								boolean isCommented
 				) {
 
 			this.id = id;
@@ -174,6 +180,8 @@ public class DummyContent {
 			this.destAirport = destAirport;
 			this.takeoffTime = takeoffTime;
 			this.arrivalTime = arrivalTime;
+			
+			this.isCommented = isCommented;
 		}
 		
 		public String getTitle(){

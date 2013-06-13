@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import android.R.raw;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -62,6 +64,87 @@ public class TransactionDetailFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_transaction_detail,
 				container, false);
 
+		Button payButton = (Button)rootView.findViewById(R.id.button_pay);
+		Button confirmButton = (Button)rootView.findViewById(R.id.button_confirm);
+		Button commentButton = (Button)rootView.findViewById(R.id.button_comment);
+		Button refundButton = (Button)rootView.findViewById(R.id.button_refund);
+		
+		payButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), PaymentActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("trans_id", mItem.id);
+			    intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+		
+		confirmButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), ConfirmtActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("trans_id", mItem.id);
+			    intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+		
+		commentButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), CommentActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("trans_id", mItem.id);
+			    intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+		
+		refundButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), RefundActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("trans_id", mItem.id);
+			    intent.putExtras(bundle);
+				startActivity(intent);
+			}
+		});
+		
+		TransDetailItem mDetail = mItem.details;
+		switch(mDetail.state){
+		case UNPAID:
+			//payButton.setEnabled(false);
+			confirmButton.setEnabled(false);
+			commentButton.setEnabled(false);
+			refundButton.setEnabled(false);
+			break;
+		case PAID:
+			payButton.setEnabled(false);
+			confirmButton.setEnabled(false);
+			commentButton.setEnabled(false);
+			//refundButton.setEnabled(false);
+			break;
+		case SHIPPED:
+			payButton.setEnabled(false);
+			//confirmButton.setEnabled(false);
+			commentButton.setEnabled(false);
+			//refundButton.setEnabled(false);
+			break;
+		case CONFIRMED:
+			payButton.setEnabled(false);
+			confirmButton.setEnabled(false);
+			if(mDetail.isCommented) commentButton.setEnabled(false);
+			//refundButton.setEnabled(false);
+			break;
+		}
+		
 		// Show the dummy content as text in a TextView.
 		if (mItem != null) {
 			ListView list = (ListView) rootView.findViewById(R.id.transaction_listview);
@@ -108,7 +191,7 @@ public class TransactionDetailFragment extends Fragment {
 		
 		map = new HashMap<String, Object>();
 		map.put("key", getResources().getString(R.string.transaction_price)+": ");
-		map.put("value", mDetail.price);
+		map.put("value", mDetail.price + getResources().getString(R.string.money_unit));
 		list.add(map);
 		
 		if(mDetail.payTime != null){
@@ -178,7 +261,7 @@ public class TransactionDetailFragment extends Fragment {
 			map.put("value", mDetail.arrivalTime);
 			list.add(map);
 		}
-		else if(mDetail.type == TRANS_TYPE.FLIGHT){
+		else if(mDetail.type == TRANS_TYPE.HOTEL){
 			map = new HashMap<String, Object>();
 			map.put("key", getResources().getString(R.string.hotel)+"\n"+getResources().getString(R.string.detail));
 			map.put("value", "");

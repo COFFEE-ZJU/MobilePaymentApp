@@ -2,8 +2,14 @@
 <resources>
 
     <string name="app_name">MobilePaymentApp</string>
-    <string name="title_transaction_detail">Transaction Detail</string>
-
+    <string name="title_transaction_detail">订单详情</string>
+    <string name="title_make_payment">支付订单</string>
+    <string name="title_confirm">订单确认收货</string>
+    <string name="title_comment">订单评价</string>
+    <string name="title_refund">订单退款</string>
+	<string name="action_settings">设置</string>
+    <string name="money_unit">元</string>
+    
     <string name="detail">详细信息</string>
     <string name="flight">航班</string>
     <string name="flight_number">航班号</string>

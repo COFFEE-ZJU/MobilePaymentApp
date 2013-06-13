@@ -29,6 +29,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".TransactionListActivity" />
         </activity>
+        <activity
+            android:name="com.zju.mobilepaymentapp.PaymentActivity" 
+            android:label="@string/title_make_payment" >
+		</activity>
+		<activity
+            android:name="com.zju.mobilepaymentapp.ConfirmtActivity" 
+            android:label="@string/title_confirm" >
+		</activity>
+		<activity
+            android:name="com.zju.mobilepaymentapp.CommentActivity" 
+            android:label="@string/title_comment" >
+		</activity>
+		<activity
+            android:name="com.zju.mobilepaymentapp.RefundActivity" 
+            android:label="@string/title_refund" >
+		</activity>
     </application>
 
 </manifest>

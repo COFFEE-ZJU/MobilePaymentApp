@@ -17,6 +17,7 @@
     
     <string name="button_pay">付款</string>
     <string name="button_comment">评论</string>
+    <string name="button_confirm">确认收货</string>
     <string name="button_refund">退款</string>
     <string name="button_back">返回</string>
     <string name="button_statement">帐单查询</string>
